@@ -1,0 +1,31 @@
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+nav .navbar-brand .orange
+{
+    color: #fd7e14;
+}
+nav .navbar-brand .blue
+{
+    color: #87CEFA;
+}
+div .orange
+{
+    font-size: xx-large;
+    color: #fd7e14;
+}
+div .blue
+{
+    font-size: xx-large;
+    color: #87CEFA;
+}
+.rounded-3 {
+    background-color: #f8f9fa;
+}
+.chosen {
+    background-color: #fd7e14;
+}
+.shortage {
+    background-color: #dc3545;
+}
