@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Grocery Shopping
+{% endblock %}
+
+{% block main %}
+    <div class="m-3">
+        <h1>Shopping Cart</h1>
+    </div>
+    <div class="m-3"  id="grocery-form">
+        <form action="/grocery" method="post" autocomplete="off">
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Item</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Purchase Date</th>
+                        <th>Best Before</th>
+                    </tr>
+                </thead>
+                <tbody id="item-block">
+                    <tr id="item-row">
+                        <td>
+                            <button class="btn btn-primary" id="btn-plus">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </td>
+                        <td><input type="text" class="form-control" name="itm-0" required></td>
+                        <td>
+                            <select class="form-select" aria-label="category" name="cat-0">
+                                <option selected value="starch">Starch</option>
+                                <option value="protein">Protein</option>
+                                <option value="vegetable">Vegetable</option>
+                                <option value="spice/seasoning">Spice/Seasoning</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </td>
+                        <td><input type="number" class="form-control" name="qty-0" required></td>
+                        <td>
+                            <select class="form-select" aria-label="unit" name="uni-0">
+                                <option selected value="g">g</option>
+                                <option value="ml">ml</option>
+                                <option value="serving">serving</option>
+                            </select>
+                        </td>
+                        <td><input class="form-control purchase" type="date" name="pcd-0"></td>
+                        <td><input class="form-control" type="date" name="bsb-0" required></td>
+                    </tr>
+                </tbody>
+            </table>
+            <input class="btn btn-primary" type="submit" value="Confirm">
+        </form>
+    </div>
+{% endblock %}

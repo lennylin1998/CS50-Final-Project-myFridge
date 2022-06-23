@@ -1,0 +1,108 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<ul class="nav nav-tabs justify-content-center" id="historyTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="cook-history" data-bs-toggle="tab" data-bs-target="#cook" type="button" role="tab" aria-controls="cook" aria-selected="true">Cook</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="recipe-history" data-bs-toggle="tab" data-bs-target="#recipe" type="button" role="tab" aria-controls="recipe" aria-selected="false">Recipe</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="purchase-history" data-bs-toggle="tab" data-bs-target="#purchase" type="button" role="tab" aria-controls="purchase" aria-selected="false">Purchase</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="overdue-history" data-bs-toggle="tab" data-bs-target="#overdue" type="button" role="tab" aria-controls="overdue" aria-selected="false">Overdue</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="historyContent">
+    <div class="tab-pane fade show active" id="cook" role="tabpanel" aria-labelledby="cook-history">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cook %}
+                <tr>
+                    <td>{{item.item}}</td>
+                    <td>{{item.category}}</td>
+                    <td>{{abs(item.quantity)}} {{item.unit}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="recipe" role="tabpanel" aria-labelledby="recipe-history">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Ingredients</th>
+                    <th>Create Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                <tr>
+                    <td>{{recipe.name}}</td>
+                    <td>{{recipe.ingredients}}</td>
+                    <td>{{recipe.date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="purchase" role="tabpanel" aria-labelledby="purchase-history">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Purchase Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in purchase %}
+                <tr>
+                    <td>{{item.item}}</td>
+                    <td>{{item.category}}</td>
+                    <td>{{item.quantity}} {{item.unit}}</td>
+                    <td>{{item.purchase_date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="overdue" role="tabpanel" aria-labelledby="overdue-history">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Best Before</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in overdue %}
+                <tr>
+                    <td>{{item.item}}</td>
+                    <td>{{item.category}}</td>
+                    <td>{{item.quantity}} {{item.unit}}</td>
+                    <td>{{item.best_before}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+{% endblock %}

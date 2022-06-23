@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Recipe
+{% endblock %}
+
+{% block main %}
+<div class="m-3 d-flex">
+    <div class="container-fluid">
+        <h1>Recipes</h1>
+        <table id='recipe-table' class="table table-borderless table-hover rounded-3 tablesorter">
+            <thead>
+                <tr>
+                    <th>Recipe</th>
+                    <th>Cook Counter</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes %}
+                <tr>
+                    <td id={{recipe.id}}>{{recipe.name}}</td>
+                    <td>{{recipe.count}}</td>
+                    <td>{{recipe.ingredients}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container-fluid">
+            <h1>Ingredients</h1>
+            <form action="/recipe" method="post" id="recipe-form">
+                <input type="number" name="recipe-id" id="recipe-id" hidden>
+                <input type="submit" class="btn btn-primary" name="recipe-cook-btn" value="Cook">
+                <a id="edit-link" href="/recipe">
+                    <button type='button' id="edit-btn" class="btn btn-outline-primary">Edit</button>
+                </a>
+            </form>
+        <table id="ingredient-table" class="table table-borderless table-hover rounded-3 tablesorter">
+            <thead>
+                <tr>
+                    <th>Ingredient</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody id="ajax-body">
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

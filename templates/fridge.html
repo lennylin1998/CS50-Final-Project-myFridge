@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Fridge
+{% endblock %}
+
+{% block main %}
+    <div class="m-3">
+        <div class='mx-auto py-2'>
+            <div>
+                <form action="/" method="post" id="fridge-form">
+                    <table id='datatable' class="table table-borderless table-hover rounded-3 tablesorter">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Item</th>
+                                <th>Category</th>
+                                <th>Purchase Date</th>
+                                <th>Days Until Expire</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                                <tr>
+                                    <td>
+                                        <input class="form-check-input" type="checkbox" id={{item.id}} aria-label="check">
+                                    </td>
+                                    <td>{{item.item}}</td>
+                                    <td>{{item.category}}</td>
+                                    <td>{{item.purchase_date}}</td>
+                                    <td>{{item.days_diff}}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            {{item.quantity}} {{item.unit}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="mx-auto py-2">
+                        <button id="cook-btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#name-modal" disabled>
+                            Cook
+                        </button>
+                        <a id="create-recipe-link" href="recipe/create">
+                            <button type="button" id="recipe-btn" class="btn btn-primary" disabled>
+                                Create Recipe
+                            </button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="name-modal" tabindex="-1" aria-labelledby="name-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="name-modal-label">Save as a Recipe</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center align-items-end">
+                    <div class='col-md-auto'>
+                        <label class="form-label">Recipe Name</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" value="Recipe_{{recipe_count + 1}}" class="form-control" name="recipe-name" form="fridge-form">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-primary" name="submit-btn" type="submit" value="Save" form="fridge-form">
+                <input class="btn btn-secondary" name="submit-btn" type="submit" value="Do\'t Save" form="fridge-form">
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

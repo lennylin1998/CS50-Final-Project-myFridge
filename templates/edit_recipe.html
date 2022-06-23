@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Edit Recipe
+{% endblock %}
+
+{% block main %}
+<div class="m-3" id="edit-recipe-form">
+    <form action="/recipe/edit" method="post" autocomplete="off">
+        <div class="container my-3">
+            <div class="row">
+              <div class="col">
+              </div>
+              <div class="col-md-auto">
+                  <div class='flex-row'>
+                    <input type="text" class='form-control form-control-lg' value="{{recipe.name}}" name="recipe-name" required>
+                    <input type="number" value={{recipe.id}} name="recipe-id" hidden>
+                  </div>
+              </div>
+              <div class="col">
+              </div>
+            </div>
+        </div>
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                </tr>
+            </thead>
+            <tbody id="item-block">
+                {% for ing in ingredients %}
+                <tr>
+                    <td>
+                        <button class="btn btn-danger" id="btn-minus"><i class="fa-solid fa-minus"></i></button>
+                    </td>
+                    <td>{{ing.item}}</td>
+                    <td>{{ing.category}}</td>
+                    <td>
+                        <input type="number" class="form-control" placeholder={{ing.quantity}} value={{ing.quantity}} name="org-{{ing.id}}" required>
+                    </td>
+                    <td>
+                        {{ing.unit}}
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr id="item-row">
+                    <td>
+                        <button class="btn btn-primary" id="btn-plus">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <input list="items" class="form-control" name="itm-0">
+                    </td>
+                    <td>
+                        <select class="form-select" aria-label="category" name="cat-0">
+                            <option selected value="starch">Starch</option>
+                            <option value="protein">Protein</option>
+                            <option value="vegetable">Vegetable</option>
+                            <option value="spice/seasoning">Spice/Seasoning</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </td>
+                    <td><input type="number" class="form-control" name="qty-0"></td>
+                    <td>
+                        <select class="form-select" aria-label="unit" name="uni-0">
+                            <option selected value="g">g</option>
+                            <option value="ml">ml</option>
+                            <option value="serving">serving</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input class="btn btn-primary" type="submit" value="Confirm">
+    </form>
+</div>
+{% endblock %}
